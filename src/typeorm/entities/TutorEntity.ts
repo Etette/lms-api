@@ -38,12 +38,12 @@ export class TutorEntity extends BaseEntity {
 
   @BeforeInsert()
   async hashPassword() {
-      this.password = await bcrypt.hash(this.password, 10);
+      this.password = await bcrypt.hash(this.password, 12);
   }
 
-  async validatePassword(password: string): Promise<boolean> {
-      return bcrypt.compare(password, this.password);
-  }
+  // async validatePassword(password: string): Promise<boolean> {
+  //     return bcrypt.compare(password, this.password);
+  // }
 
   @OneToMany(() => ResourceEntity, (resources) => resources.tutor)
   resources: ResourceEntity[];

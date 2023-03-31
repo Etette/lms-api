@@ -19,7 +19,7 @@ import {
       //show the profile
     }
 
-    @Get() //only admin
+    @Get('all') //only admin
     async getAdmins() {
         return await this.adminService.getAlladmins();
     }
@@ -32,6 +32,11 @@ import {
     @Patch('/update/:adminId')
     async updateAdmin(@Param('adminId') adminId: number, @Body() updateAdminDto: UpdateAdminDto) {
         return await this.adminService.updateadmin(adminId, updateAdminDto);
+    }
+
+    @Get('/get/:email')
+    async adminByEmail(@Param('Admin email') adminEmail: string){
+      return await this.adminService.getadminByEmail(adminEmail);
     }
 
   

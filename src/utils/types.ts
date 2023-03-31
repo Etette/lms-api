@@ -43,14 +43,15 @@ export type UpdateAdminParams = {
 export type CreateStudentParams = {
   email: string;
   password: string;
-  programme: string;
-  status: isActive;
+  
+ 
 };
 
 export type UpdateStudentParams = {
   firstname: string;
   middlename: string;
   lastname: string;
+  programme: string;  
 };
 
 export type CreateAssignmentSubmissionParams = { link: string };
@@ -93,4 +94,14 @@ export type UpdateTutorParams = {
   middlename: string;
   lastname: string;
   // course: string;
+};
+
+export interface userI {
+  id: number;
+  firstname: string;
+  middlename: string;
+  lastname: string;
+  //username?: string;
+  email: string;
+  password?: string;
 };

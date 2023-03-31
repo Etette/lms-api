@@ -30,6 +30,7 @@ import { AuthModule } from './auth/auth.module';
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
+      inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         type: configService.get<TypeOrmModuleOptions>('DB_TYPE', {
           infer: true,
@@ -52,7 +53,7 @@ import { AuthModule } from './auth/auth.module';
         ],
         synchronize: true,
       }),
-      inject: [ConfigService],
+      
     }),
     AdminModule,
     StudentModule,

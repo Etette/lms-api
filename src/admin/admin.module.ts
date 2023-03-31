@@ -12,8 +12,8 @@ import { ProgrammeEntity } from 'src/typeorm/entities/ProgrammeEntity';
 import { AnnouncementEntity } from 'src/typeorm/entities/AnnouncementEntity';
 import { TutorEntity } from 'src/typeorm/entities/TutorEntity';
 import { StudentEntity } from 'src/typeorm/entities/StudentEntity';
-import { AuthController } from 'src/auth/auth.controller';
-import { AuthService } from 'src/auth/auth.service';
+// import { AuthController } from 'src/auth/auth.controller';
+// import { AuthService } from 'src/auth/auth.service';
 import { AdminService } from './services/profile/adminProfile.service';
 import { adminController } from './controllers/profile/adminProfile.controller';
 import { JwtService } from '@nestjs/jwt';
@@ -34,7 +34,7 @@ import { AdminEntity } from 'src/typeorm/entities/AdminEntity';
     studentController,
     ProgrammesController,
     AnnouncementsController,
-    AuthController,
+    //AuthController,
     adminController,
   ],
   providers: [
@@ -42,7 +42,7 @@ import { AdminEntity } from 'src/typeorm/entities/AdminEntity';
     ProgrammesService,
     ProfileService,
     TutorService,
-    AuthService,
+   // AuthService,
     AdminService,
     JwtService,
   ],

@@ -10,7 +10,7 @@ import {
   import { SignupTutorDto } from 'src/tutor/Dto/tutorSignup.Dto';
   import { UpdateTutorDto } from 'src/tutor/Dto/updateTutor.Dto';
   import { TutorService } from 'src/tutor/service/profile/tutor.service';
-import { isTutor } from 'src/utils/enums';
+  import { isTutor } from 'src/utils/enums';
   
   @Controller('profile')
   export class TutorController {

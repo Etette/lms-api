@@ -1,26 +1,33 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Controller, Delete, Get, Param, ParseIntPipe } from "@nestjs/common";
 import { ProfileService } from 'src/student/service/profile/profile.service'
+import { StudentEntity } from "src/typeorm/entities/StudentEntity";
 
 @Controller('/student')
 export class studentController {
     constructor(private profileService: ProfileService) {}
-    @Get('/all') //only admin
-    async getStudents() {
-        return await this.profileService.getAllStudents();
+    @Get('get/all') //only admin
+    getStudents() {
+        return this.profileService.allStudents();
     }
 
-    @Get('/by_programme') //only admin
+    @Get('/get/by_programme') 
     async studentsByProgramme(@Param('programme') progrgramme: string){
       return await this.profileService.getStudentByProgramme(progrgramme);
     }
 
-    @Get('/by_email')
-    async studentByEmail(@Param('studentEmail') email: string){
-        return await this.profileService.getStudentByEmail(email);
+    @Get('get/email')
+    async studentByEmail(@Param('student email') email: string){
+        return await this.profileService.findBymail(email)
     }
 
-    @Get('/:studentId')
-    async getStudentById(@Param('studentId') studentId: number){
-        return await this.profileService.getStudentById(studentId);
+    @Get('get/Id')
+    async getStudentById(@Param('studentId') studentId: number): Promise<StudentEntity> {
+        return await this.profileService.studentById(Number(studentId));
     }
+
+    @Delete('id')
+    async DeleteStudent(@Param('student id', ParseIntPipe) id: number) {
+        return await this.profileService.removeStudent(id);
+    }
+
 }

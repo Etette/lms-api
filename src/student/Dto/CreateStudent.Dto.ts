@@ -15,12 +15,11 @@ export class CreateStudentDto {
     @IsStrongPassword()
     password: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsString()
-    programme: string;
-
-    
+    // @ApiProperty()
     // @IsNotEmpty()
-    status: isActive;
+    // @IsString()
+    // programme: string;
+    
+    // // @IsNotEmpty()
+    // status: isActive;
 }

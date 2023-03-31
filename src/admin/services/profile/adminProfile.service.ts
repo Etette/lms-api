@@ -21,7 +21,7 @@ export class AdminService {
   }
 
   async updateadmin(id: number, updateadminDetails: UpdateAdminParams) {
-    await this.setRole(id);
+    this.setRole(id);
     await this.adminRepository.update(
       { id: id },
       { ...updateadminDetails },
@@ -38,7 +38,7 @@ export class AdminService {
         return admin;
     }
 
-    async setRole(id : number) {
+    private async setRole(id : number) {
       const admin = await this.adminRepository.findOne({
         where: {id : id }
       });
@@ -46,14 +46,22 @@ export class AdminService {
       return this.adminRepository.save(admin);
     }
 
-    async getadminByEmail(email: string): Promise<AdminEntity> {
-        const admin = await this.adminRepository.findOneBy({email});
-        delete admin.password;
+    async getadminByEmail(ademail: string): Promise<AdminEntity> {
+        const admin = await this.adminRepository.findOne({
+          where: {email: ademail},
+          select: {
+            firstname: true,
+            lastname: true,
+            email: true,
+          }
+        });
+        //delete admin.password;
         return admin;
     }
 
      async getAlladmins(): Promise<AdminEntity[]> { //promise<admin[]> to return a list of all admins
         const admins =  await this.adminRepository.find();
+        admins.forEach(function (v) {delete v.password});
         return admins;
      }
   

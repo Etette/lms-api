@@ -1,7 +1,7 @@
-import { Controller, Get, Param, Post } from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe, Post } from "@nestjs/common";
 import { TutorService } from "src/tutor/service/profile/tutor.service";
 
-@Controller('/tutor')
+@Controller('tutor')
 export class tutorController{
     constructor(private tutorService: TutorService) {}
 
@@ -10,16 +10,23 @@ export class tutorController{
         return await this.tutorService.getAllTutors();
     }
 
-    @Get('/tutor_email') //only admin
+    @Get('get/email') //only admin
     async getTutorByEmail(@Param('email') email: string){
-      return await this.tutorService.getTutorByEmail(email);
+      return this.tutorService.getTutorByEmail(email);
+    }
+
+    @Get('get/id')
+    getById(@Param('id', ParseIntPipe) id: number) {
+       return console.log(id, Number(id), {id}, id.toString());
+        //return await this.tutorService.getTutorById(id);
     }
 
     
-    @Post('approve-tutor')
-    async approveTutor(@Param('tutor_email')email: string){
-        await this.tutorService.approveRoleTutor(email);
-        return 'Tutor added'
+    @Post('approve')
+    async approveTutor(@Param('tutor_Id', ParseIntPipe) id: number){
+        console.log(id);
+        await this.tutorService.approveRoleTutor(id);
+        return 'Tutor role approved';
     }
 
     // @Get('/:tutorId')

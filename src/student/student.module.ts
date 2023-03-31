@@ -15,11 +15,12 @@ import { AnnouncementEntity } from 'src/typeorm/entities/AnnouncementEntity';
 import { AssignmentEntity } from 'src/typeorm/entities/AssignmentEntity';
 import { AssignmentSubmissionEntity } from 'src/typeorm/entities/AssignmentSubmissionEntity';
 import { StudentEntity } from 'src/typeorm/entities/StudentEntity';
-import { AuthController } from 'src/auth/auth.controller';
-import { AuthService } from 'src/auth/auth.service';
+//import { AuthController } from 'src/auth/auth.controller';
+//import { AuthService } from 'src/auth/auth.service';
 import { AdminService } from 'src/admin/services/profile/adminProfile.service';
 import { JwtService } from '@nestjs/jwt';
 import { AdminEntity } from 'src/typeorm/entities/AdminEntity';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { AdminEntity } from 'src/typeorm/entities/AdminEntity';
       AssignmentSubmissionEntity,
       StudentEntity,
       AdminEntity,
+     // AuthModule,
     ]),
   ],
   controllers: [
@@ -38,7 +40,7 @@ import { AdminEntity } from 'src/typeorm/entities/AdminEntity';
     AssignmentsController,
     AssignmentsSubmissionController,
     ProfileController,
-    AuthController,
+    //AuthController,
   ],
   providers: [
     AnnouncementsService,
@@ -46,7 +48,7 @@ import { AdminEntity } from 'src/typeorm/entities/AdminEntity';
     ProfileService,
     ResourcesService,
     AssignmentsSubmissionService,
-    AuthService,
+    //AuthService,
     AdminService,
     JwtService,
   ],

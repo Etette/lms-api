@@ -18,6 +18,10 @@ import { ResourceEntity } from 'src/typeorm/entities/ResourceEntity';
 import { AnnouncementEntity } from 'src/typeorm/entities/AnnouncementEntity';
 import { StudentEntity } from 'src/typeorm/entities/StudentEntity';
 import { TutorEntity } from 'src/typeorm/entities/TutorEntity';
+//import { AuthService } from 'src/auth/auth.service';
+import { AdminService } from 'src/admin/services/profile/adminProfile.service';
+import { JwtService } from '@nestjs/jwt';
+import { AdminEntity } from 'src/typeorm/entities/AdminEntity';
 
 @Module({
   imports: [
@@ -27,6 +31,7 @@ import { TutorEntity } from 'src/typeorm/entities/TutorEntity';
       ResourceEntity,
       AnnouncementEntity,
       StudentEntity,
+      AdminEntity,
       TutorEntity,
     ]),
   ],
@@ -45,6 +50,9 @@ import { TutorEntity } from 'src/typeorm/entities/TutorEntity';
     ResourcesService,
     TutorService,
     ProfileService,
+    //AuthService,
+    AdminService,
+    JwtService,
 
   ],
 })

@@ -20,5 +20,10 @@ export class UpdateStudentDto {
 
     @ApiProperty()
     @IsNotEmpty()
+    @IsString()
+    programme: string;
+
+    @ApiProperty()
+    @IsNotEmpty()
     isActive: Boolean;
 }

@@ -23,7 +23,7 @@ export class StudentEntity extends BaseEntity {
     @Column()
     password: string;
 
-    @Column()
+    @Column({nullable: true})
     programme: string;
 
     @Column({
@@ -44,10 +44,15 @@ export class StudentEntity extends BaseEntity {
         this.password = await bcrypt.hash(this.password, 10);
     }
 
-    async validatePassword(password: string): Promise<boolean> {
-        //const ppassword = await bcrypt.hash(password, 10);
-        return bcrypt.compare(password, this.password);
+    @BeforeInsert()
+    emailtoLowerCase() {
+        this.email =  this.email.toLowerCase();
     }
+
+    // async validatePassword(password: string): Promise<boolean> {
+    //     //const ppassword = await bcrypt.hash(password, 10);
+    //     return bcrypt.compare(password, this.password);
+    // }
 
     @OneToMany(
         () => AssignmentSubmissionEntity,

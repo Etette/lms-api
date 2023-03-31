@@ -7,16 +7,21 @@ export class studentController {
 
     @Get() //only admin
     async getStudents() {
-        return await this.profileService.getAllStudents();
+        return await this.profileService.allStudents();
     }
 
-    @Get('get/student_by_programme') //only admin
-    async studentsByProgramme(@Param('programme') progrgramme: string){
-      return await this.profileService.getStudentByProgramme(progrgramme);
-    }
+    // @Get('get/student_by_programme') //only admin
+    // async studentsByProgramme(@Param('programme') progrgramme: string){
+    //   return await this.profileService.getStudentByProgramme(progrgramme);
+    // }
 
     @Get('get/:studentId')
-    async getStudentById(@Param('studentId') studentId: number){
-        return await this.profileService.getStudentById(studentId);
+    getStudentById(@Param('studentId') studentId: number){
+        return this.profileService.studentById(studentId);
     }
+
+    @Get('get/email')
+    getStudentByEmail(@Param('student Email') email: string){
+        return this.profileService.findBymail(email);
+   }
 }
